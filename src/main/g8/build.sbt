@@ -4,6 +4,7 @@ val supportedScalaVersions = List(scala,scalaCross)
 val Http4sVersion = "$http4s_version$"
 val FinagleVersion = "$finagle_version$"
 val MunitVersion = "0.7.5"
+val CirisVersion = "1.0.4"
 
 inScope(Scope.GlobalScope)(
   List(
@@ -34,10 +35,16 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "org.http4s"  %% "http4s-core" % Http4sVersion,
       "org.http4s"  %% "http4s-client" % Http4sVersion,
+      "org.http4s"  %% "http4s-dsl" % Http4sVersion,
+      "org.http4s"  %% "http4s-finagle" % s"$Http4sVersion+",
+      "is.cir" %% "ciris" % CirisVersion,
+      "is.cir" %% "ciris-enumeratum" % CirisVersion,
       "com.twitter" %% "finagle-http" % FinagleVersion,
+      "com.twitter" %% "twitter-server" % FinagleVersion,
       "org.scalameta" %% "munit" % MunitVersion % Test,
       "org.scalameta" %% "munit-scalacheck" % MunitVersion % Test,
       "org.http4s"  %% "http4s-dsl" % Http4sVersion % Test,
     ),
     testFrameworks += new TestFramework("munit.Framework"),
+    addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full),
   )
