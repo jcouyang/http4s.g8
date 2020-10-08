@@ -1,46 +1,21 @@
 val scala = "$scala_version$"
-val scalaCross = "$scala_cross_version$"
-val supportedScalaVersions = List(scala,scalaCross)
 val Http4sVersion = "$http4s_version$"
-val FinagleVersion = "$finagle_version$"
-val MunitVersion = "0.7.5"
-val CirisVersion = "1.0.4"
-
-inScope(Scope.GlobalScope)(
-  List(
-    organization := "$organization$",
-    licenses := Seq("Apache License 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-    homepage := Some(url("$home_page$")),
-    developers := List(
-      Developer("$developer_id$", "$developer$", "$developer_email$", url("$developer_uri$"))
-    ),
-    scmInfo := Some(
-      ScmInfo(
-        url("$scm_uri$"),
-        "$scm_ssh$"
-      )
-    ),
-    pgpPublicRing := file(".") / ".gnupg" / "pubring.asc",
-    pgpSecretRing := file(".") / ".gnupg" / "secring.asc",
-    releaseEarlyWith := SonatypePublisher,
-    scalaVersion := scala
-  )
-)
-
+val MunitVersion = "0.7.11"
+val TwitterVersion = "20.8.0"
+val CirisVersion = "1.1.2"
 
 lazy val root = (project in file("."))
   .settings(
+    organization := "$organization$",
     name := "$name$",
-    crossScalaVersions := supportedScalaVersions,
     libraryDependencies ++= Seq(
       "org.http4s"  %% "http4s-core" % Http4sVersion,
       "org.http4s"  %% "http4s-client" % Http4sVersion,
       "org.http4s"  %% "http4s-dsl" % Http4sVersion,
-      "org.http4s"  %% "http4s-finagle" % s"$Http4sVersion+",
+      "org.http4s"  %% "http4s-finagle" % s"\Main$Http4sVersion+",
       "is.cir" %% "ciris" % CirisVersion,
       "is.cir" %% "ciris-enumeratum" % CirisVersion,
-      "com.twitter" %% "finagle-http" % FinagleVersion,
-      "com.twitter" %% "twitter-server" % FinagleVersion,
+      "com.twitter" %% "twitter-server" % TwitterVersion,
       "org.scalameta" %% "munit" % MunitVersion % Test,
       "org.scalameta" %% "munit-scalacheck" % MunitVersion % Test,
       "org.http4s"  %% "http4s-dsl" % Http4sVersion % Test,

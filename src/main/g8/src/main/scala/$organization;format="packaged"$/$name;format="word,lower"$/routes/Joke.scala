@@ -6,6 +6,8 @@ import cats.data._
 import cats._
 import cats.effect._
 
-object Router {
-  def route(implicit r: AppResource) = configRoute <+> jokeRoute
+object Joke {
+  def route = Kleisli { r: HasClient => HttpRoutes.of[IO] {
+
+  }}
 }

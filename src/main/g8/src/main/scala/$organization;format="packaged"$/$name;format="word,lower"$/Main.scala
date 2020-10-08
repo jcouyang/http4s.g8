@@ -17,10 +17,13 @@ object Main extends TwitterServer {
   def main() = {
     Resource.use { deps =>
       val service = Router.route(deps)
-      val server = Http.serve(port(), Finagle.mkService[IO](service.orNotFound))
+      val server = Http
+        .server
+        .withLabel("$name;format="norm"$")
+        .serve(port(), Finagle.mkService[IO](service.orNotFound))
       logger.info(s"Server Started on \${port()}")
       onExit { server.close() }
       IO(Await.ready(server))
-    }.unsafeRunSync
-  }
+    }
+  }.unsafeRunSync
 }
