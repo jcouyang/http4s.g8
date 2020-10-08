@@ -1,5 +1,5 @@
 <configuration>
-  <variable name="LOG_LEVEL" value="${LOG_LEVEL:-INFO}" />
+  <variable name="LOG_LEVEL" value="\${LOG_LEVEL:-INFO}" />
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- On Windows machines setting withJansi to true enables ANSI
          color code interpretation by the Jansi library. This requires
@@ -11,7 +11,7 @@
       <pattern>[%X{trace.id} %thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n</pattern>
     </encoder>
   </appender>
-  <root level="${LOG_LEVEL}">
+  <root level="\${LOG_LEVEL}">
     <appender-ref ref="STDOUT" />
   </root>
 </configuration>

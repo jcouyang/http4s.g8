@@ -1,4 +1,5 @@
-package db
+package $organization;format="package"$.$name;format="word,lower"$.db
+
 import cats.effect._
 import doobie.free.connection.ConnectionIO
 import org.flywaydb.core.api.migration.BaseJavaMigration

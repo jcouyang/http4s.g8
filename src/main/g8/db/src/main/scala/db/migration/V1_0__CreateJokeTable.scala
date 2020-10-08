@@ -1,4 +1,4 @@
-package db
+package $organization;format="package"$.$name;format="word,lower"$.db
 package migration
 import doobie.implicits._
 

@@ -25,7 +25,7 @@ object Main extends TwitterServer with PrometheusExporter {
           .withStatsReceiver(PrometheusExporter.metricStatsReceiver)
           .withLabel("$name;format="norm"$")
           .serve(port(), Finagle.mkService[IO](service.orNotFound))
-        logger.info(s"Server Started on ${port()}")
+        logger.info(s"Server Started on \${port()}")
         onExit {
           server.close()
           ()

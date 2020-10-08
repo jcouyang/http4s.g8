@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/sbt
-# Edit at https://www.gitignore.io/?templates=sbt
+# Created by https://www.toptal.com/developers/gitignore/api/sbt
+# Edit at https://www.toptal.com/developers/gitignore?templates=sbt
 
 ### SBT ###
 # Simple Build Tool
@@ -16,6 +16,9 @@ project/plugins/project/
 .cache
 .lib/
 
-# End of https://www.gitignore.io/api/sbt
-.metals/
+# End of https://www.toptal.com/developers/gitignore/api/sbt
 .bloop/
+.metals/
+.idea
+$name;format="norm"$
+$name;format="norm"$-db-migration

@@ -21,7 +21,7 @@ object http {
             .withTls(host.value)
             .withHttpStats
             .withStatsReceiver(PrometheusExporter.metricStatsReceiver)
-            .newService(s"$host:443")
+            .newService(s"\$host:443")
         )
       case (Some(Scheme.https), Some(host), Some(port)) =>
         Finagle.mkClient[IO](
@@ -29,15 +29,15 @@ object http {
             .withTls(host.value)
             .withHttpStats
             .withStatsReceiver(PrometheusExporter.metricStatsReceiver)
-            .newService(s"$host:$port")
+            .newService(s"\$host:\$port")
         )
       case (_, Some(host), Some(port)) =>
         Finagle.mkClient[IO](
           Http.client.withHttpStats.withHttp2
             .withStatsReceiver(PrometheusExporter.metricStatsReceiver)
-            .newService(s"$host:$port")
+            .newService(s"\$host:\$port")
         )
       case _ =>
-        Resource.liftF(IO.raiseError(new Exception(s"cannot initialize HttpClient for $uri")))
+        Resource.liftF(IO.raiseError(new Exception(s"cannot initialize HttpClient for \$uri")))
     }
 }

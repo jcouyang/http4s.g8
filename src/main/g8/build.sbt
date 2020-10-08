@@ -1,4 +1,4 @@
-val Http4sVersion = "$http4s_version$"
+val Http4sVersion = "1.0.0-M4"
 val MunitVersion = "0.7.11"
 val TwitterVersion = "20.8.0"
 val CirisVersion = "1.1.2"
@@ -9,7 +9,7 @@ ThisBuild / scalaVersion := "$scala_version$"
 lazy val root = (project in file("."))
   .settings(
     organization := "$organization$",
-    name := "$name$",
+    name := "$name;format="norm"$",
     libraryDependencies ++= Seq(
       "org.http4s"                 %% "http4s-core"                    % Http4sVersion,
       "org.http4s"                 %% "http4s-client"                  % Http4sVersion,
@@ -47,7 +47,7 @@ lazy val root = (project in file("."))
 lazy val db = project
   .settings(
     organization := "$organization$",
-    name := "$name$-db-migration",
+    name := "$name;format="norm"$-db-migration",
     libraryDependencies ++= Seq(
       "org.flywaydb"  % "flyway-core"     % "6.5.5",
       "org.tpolecat" %% "doobie-core"     % DoobieVersion,

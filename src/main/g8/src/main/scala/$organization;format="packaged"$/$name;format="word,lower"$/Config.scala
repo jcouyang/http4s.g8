@@ -24,7 +24,7 @@ import Env._
 
 case class Config(env: Env, jokeService: Uri, database: DataBaseConfig)
 case class DataBaseConfig(host: Secret[String], port: Int, name: String, user: Secret[String], pass: Secret[String]) {
-  def jdbc = s"jdbc:postgresql://${host.value}:${port}/${name}"
+  def jdbc = s"jdbc:postgresql://\${host.value}:\${port}/\${name}"
 }
 object DataBaseConfig {
   implicit def secretEncoder[A: Show]: Encoder[Secret[A]] = Encoder.encodeString.contramap(_.show)

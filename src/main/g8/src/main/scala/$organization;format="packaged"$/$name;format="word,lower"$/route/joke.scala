@@ -49,8 +49,8 @@ object joke {
             .insert(_.text -> lift(joke.text))
             .returningGenerated(_.id)
         }))
-        _ <- log.infoF(s"created joke with id $id")
-        resp <- Created(json"""{"id": $id}""")
+        _ <- log.infoF(s"created joke with id \$id")
+        resp <- Created(json"""{"id": \$id}""")
       } yield resp
 
     case GET -> Root / "joke" =>
@@ -69,14 +69,14 @@ object joke {
     case GET -> Root / "joke" / IntVar(id) =>
       for {
         has <- Kleisli.ask[IO, HasDatabase with HasToggle]
-        joke <- log.infoF(s"getting joke $id") *> Kleisli.liftF(
+        joke <- log.infoF(s"getting joke \$id") *> Kleisli.liftF(
           IO.shift(IO.contextShift(ExecutionContext.global))
         ) *> has.transact(run(quote {
           query[Dao.Joke].filter(_.id == lift(id)).take(1)
         }))
         dadJoke =
           if (has.toggleOn("$organization;format="package"$.$name;format="word,lower"$.useDadJoke"))
-            log.infoF(s"cannot find joke $id") *> dadJokeApp.flatMap(NotFound(_))
+            log.infoF(s"cannot find joke \$id") *> dadJokeApp.flatMap(NotFound(_))
           else
             NotFound(id)
         resp <- joke match {
