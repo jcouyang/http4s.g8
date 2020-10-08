@@ -1,0 +1,9 @@
+{
+  "toggles": [
+    {
+      "id": "$organization;format="package"$.$name;format="word,lower"$.useDadJoke",
+      "description": "random generate dad joke",
+      "fraction": 0.5
+    }
+  ]
+}
