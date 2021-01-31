@@ -1,5 +1,6 @@
-package $organization;format="package"$.$name;format="word,lower"$.db
-package migration
+package db.migration
+
+import $organization;format="package"$.$name;format="word,lower"$.db.DoobieMigration
 import doobie.implicits._
 
 class V1_0__CreateJokeTable extends DoobieMigration {
