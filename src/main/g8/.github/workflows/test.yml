@@ -18,11 +18,11 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.cache/coursier
-        key: ${{ runner.os }}-sbt-cache-${{ hashFiles('**/build.sbt') }}
+        key: \${{ runner.os }}-sbt-cache-\${{ hashFiles('**/build.sbt') }}
     - name: Cache Sbt
       uses: actions/cache@v1
       with:
         path: ~/.sbt
-        key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
+        key: \${{ runner.os }}-sbt-\${{ hashFiles('**/build.sbt') }}
     - name: Test
       run: nix-shell --run 'sbt +test'
