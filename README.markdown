@@ -1,5 +1,19 @@
 A [Giter8][g8] template for Http4s!
 
+Usage
+---
+```
+sbt new jcouyang/http4s.g8
+```
+
+Test
+----
+```
+sbt new file://./http4s.g8 --name="Http4s Example" -f
+```
+
+https://github.com/jcouyang/http4s-example
+
 Template license
 ----------------
 Written in 2020 by Jichao Ouyang oyanglulu+github@gmail.com
